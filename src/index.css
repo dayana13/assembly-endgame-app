@@ -59,7 +59,7 @@ section.game-languages {
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-
+  margin-bottom: 36px;
 
 }
 
@@ -73,4 +73,51 @@ section.game-languages {
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 3px;
+}
+
+.word-array {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+
+}
+
+section.word-array>span {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #F9F4DA;
+  margin-bottom: 10px;
+  height: 40px;
+  width: 40px;
+  background-color: #323232;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #E9F4DA;
+}
+
+section.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 750px;
+
+}
+
+section.keyboard>button {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #F9F4DA;
+  background-color: #323232;
+  border: none;
+  border-radius: 3px;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
 }

@@ -1,9 +1,27 @@
 
 import React from 'react';
 import { languages } from './languages.js';
+import {
+  useState,
+  useEffect
+
+} from "react";
 
 
 function App() {
+
+  const [currentWord, setCurrentWord] = useState("react");
+
+  const wordArray = currentWord.split('');
+  const letterElements = wordArray.map((letter, index) => (
+    <span key={index} >{letter.toUpperCase()}</span>
+  ))
+
+  const alphabet = "abcdefghijklmnopqrstuvwxyz";
+  const alphabetArray = alphabet.split('');
+  const keyBoardElements = alphabetArray.map((letter, index) => (
+    <button key={index} >{letter.toUpperCase()}</button>
+  ))
 
   const languagesElements = languages.map(language => {
 
@@ -32,6 +50,12 @@ function App() {
       </section>
       <section className="game-languages">
         {languagesElements}
+      </section>
+      <section className="word-array">
+        {letterElements}
+      </section>
+      <section className="keyboard">
+        {keyBoardElements}
       </section>
     </main>
   )

@@ -41,6 +41,19 @@ section.game-status {
   margin-block: 30px;
 }
 
+section.game-status.game-won {
+  background-color: #10A95B;
+}
+
+section.game-status.game-lost {
+  background-color: #a91010;
+}
+
+section.game-status.farewell {
+  background-color: #7A5EA7;
+  border: 1px dashed #323232;
+}
+
 section.game-status>h2 {
   font-size: 1.5rem;
   font-weight: 500;
@@ -54,6 +67,8 @@ section.game-status>p {
   color: #F9F4DA;
 }
 
+
+
 section.game-languages {
   display: flex;
   flex-wrap: wrap;
@@ -64,16 +79,27 @@ section.game-languages {
 }
 
 .language-box {
+  border-radius: 3px;
+  padding: 4.5px;
+  position: relative
+}
+
+/* Dimmed overlay with skull on "lost" languages */
+.language-box.lost::before {
+  content: "X";
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  font-weight: bold;
-  text-align: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 3px;
+  font-size: 3rem;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  color: red;
+  background-color: rgba(0, 0, 0, 0.7);
 }
+
 
 .word-array {
   display: flex;
@@ -103,7 +129,7 @@ section.keyboard {
   justify-content: center;
   gap: 10px;
   max-width: 750px;
-
+  margin-bottom: 20px;
 }
 
 section.keyboard>button {
@@ -113,11 +139,32 @@ section.keyboard>button {
   justify-content: center;
   font-size: 1.5rem;
   font-weight: 500;
-  color: #F9F4DA;
-  background-color: #323232;
-  border: none;
-  border-radius: 3px;
+  color: black;
+  background-color: #FCBA29;
+  border: 1 px solid;
+  border-radius: 5px;
   height: 40px;
   width: 40px;
+  cursor: pointer;
+}
+
+section.keyboard>button.correct {
+  background-color: #10A95B;
+}
+
+section.keyboard>button.wrong {
+  background-color: #EC5D49;
+}
+
+
+button.new-game {
+  background-color: #11B5E5;
+  border: 1px solid #D7D7D7;
+  border-radius: 4px;
+  width: 225px;
+  height: 40px;
+  padding: 6px 12px;
+  display: block;
+  margin-inline: auto;
   cursor: pointer;
 }

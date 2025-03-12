@@ -9,10 +9,16 @@ import {
 } from "react";
 
 import { getFarewellText } from './utils.js';
+import { words } from './words.js';
+import Confetti from "react-confetti";
+
+
+
+
 
 function App() {
   // State values 
-  const [currentWord, setCurrentWord] = useState("react");
+  const [currentWord, setCurrentWord] = useState(() => getRandomWord());
   const [guessedLetters, setGuessedLetters] = useState([]);
 
 
@@ -45,6 +51,8 @@ function App() {
       <button key={index}
         className={className}
         disabled={isGameOver}
+        aria-disabled={isGameOver}
+        arial-label={`Letter ${letter}`}
         onClick={() => addGuessedLetter(letter)} >
         {letter.toUpperCase()}
       </button>
@@ -54,9 +62,11 @@ function App() {
   //Render guess letters
   const letterElements = wordArray.map((letter, index) => {
     const isGuessed = guessedLetters.includes(letter);
-    const displayLetter = isGuessed ? letter.toLocaleUpperCase() : '';
+    const shouldDisplayLetter = isGuessed || isGameLost;
+    const displayLetter = shouldDisplayLetter ? letter.toLocaleUpperCase() : '';
+    const letterClass = clsx({ "missed-letter": !isGuessed && isGameLost });
     return (
-      <span key={index} >{displayLetter}</span>
+      <span key={index} className={letterClass}>{displayLetter}</span>
     )
   })
 
@@ -84,8 +94,16 @@ function App() {
     console.log(letter);
     setGuessedLetters(prevLetters => prevLetters.includes(letter) ? prevLetters : [...prevLetters, letter]);
 
+  }
 
+  function getRandomWord() {
+    const randomIndex = Math.floor(Math.random() * words.length);
+    return words[randomIndex];
+  }
 
+  function resetGame() {
+    setCurrentWord(getRandomWord());
+    setGuessedLetters([]);
   }
 
   const gameStatus = clsx("game-status", {
@@ -127,11 +145,12 @@ function App() {
 
   return (
     <main>
+      {isGameWon && <Confetti recycle={false} numberOfPieces={1000} />}
       <header>
         <h1>Assembly: Endgame</h1>
         <p>Guess the word withing 8 attempts to keep the programming world safe from Assembly! </p>
       </header>
-      <section className={gameStatus}>
+      <section arial-live="polite" role="status" className={gameStatus}>
         {renderGameStatus()}
 
       </section>
@@ -144,7 +163,7 @@ function App() {
       <section className="keyboard">
         {keyBoardElements}
       </section>
-      {isGameOver && <button className="new-game">New Game</button>}
+      {isGameOver && <button className="new-game" onClick={() => resetGame()} >New Game</button>}
     </main>
   )
 }

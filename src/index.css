@@ -123,6 +123,11 @@ section.word-array>span {
   border-bottom: 1px solid #E9F4DA;
 }
 
+section.word-array>span.missed-letter {
+  color: #EC5D49;
+}
+
+
 section.keyboard {
   display: flex;
   flex-wrap: wrap;
@@ -146,6 +151,11 @@ section.keyboard>button {
   height: 40px;
   width: 40px;
   cursor: pointer;
+}
+
+section.keyboard>button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 section.keyboard>button.correct {
